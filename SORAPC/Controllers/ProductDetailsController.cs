@@ -27,9 +27,7 @@ namespace SORAPC.Controllers
             }
 
             var product = await db.Products
-                .Include(p => p.Reviews) // Подгружаем отзывы
-                    .ThenInclude(r => r.Users) // Подгружаем пользователей для каждого отзыва
-                .FirstOrDefaultAsync(p => p.IdProduct == id);
+                .Include(p => p.Reviews).ThenInclude(r => r.Users).FirstOrDefaultAsync(p => p.IdProduct == id);
 
             if (product == null)
             {

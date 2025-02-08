@@ -146,36 +146,4 @@
     </div>
 </div>
 
-<div class="reviews-section">
-    <h2>Отзывы</h2>
-    @if (Model.Reviews.Any())
-    {
-        foreach (var review in Model.Reviews)
-        {
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="review-user">
-                        <span>@review.Users.Logins</span>
-                    </div>
-                    <div class="review-date">
-                        <span>@review.CreatedAt?.ToString("dd.MM.yyyy")</span>
-                    </div>
-                </div>
-                <div class="review-rating">
-                    @for (int i = 0; i < review.Rating; i++)
-                    {
-                        <span class="star @(i < review.Rating ? "filled" : "")">⭐️</span>
-                    }
-                </div>
-                <div class="review-comment">
-                    <p>@review.Comment</p>
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <p>Пока нет отзывов. Будьте первым!</p>
-    }
-    @await Html.PartialAsync("_AddReview", new SORAPC.Models.Review { ProductId = Model.IdProduct })
-</div>
+@await Html.PartialAsync("DisplayTemplates/Reviews", Model)

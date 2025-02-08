@@ -1,4 +1,4 @@
-﻿@model SORAPC.Models.Review
+﻿@model SORAPC.Models.Product
 
 <style>
     .review-card {
@@ -8,7 +8,7 @@
         margin-bottom: 15px;
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        max-width: 300px; /* Ширина карточки */
+        max-width: 300px;
     }
 
     .review-header {
@@ -25,7 +25,7 @@
     }
 
     .review-rating {
-        color: #ffc107; /* Желтый цвет для звезд */
+        color: #ffc107;
         font-size: 18px;
     }
 
@@ -43,16 +43,36 @@
     }
 </style>
 
-<div class="review-card">
-    <div class="review-header">
-        <span class="review-user">@Model.Users.Logins</span>
-        <span class="review-date">@Model.CreatedAt?.ToString("dd.MM.yyyy")</span>
-    </div>
-    <div class="review-rating">
-        <span class="star">⭐️</span>
-        <span class="rating-value">@Model.Rating</span>
-    </div>
-    <div class="review-comment">
-        <p>@Model.Comment</p>
-    </div>
+<div class="reviews-section">
+    <h2>Отзывы</h2>
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-user">
+                        <span>@review.Users.Logins</span>
+                    </div>
+                    <div class="review-date">
+                        <span>@review.CreatedAt?.ToString("dd.MM.yyyy")</span>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    @for (int i = 0; i < review.Rating; i++)
+                    {
+                        <span class="star @(i < review.Rating ? "filled" : "")">⭐️</span>
+                    }
+                </div>
+                <div class="review-comment">
+                    <p>@review.Comment</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Пока нет отзывов. Будьте первым!</p>
+    }
+    @await Html.PartialAsync("_AddReview", new SORAPC.Models.Review { ProductId = Model.IdProduct })
 </div>
