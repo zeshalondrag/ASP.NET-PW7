@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SORAPC.Models.Product>
+@{
+    ViewBag.Title = "Список продуктов";
+}
+<a asp-action="CreateProducts" asp-controller="Products" class="btn btn-primary">Добавить продукт</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Описание</th>
+            <th>Количество</th>
+            <th>Статус продукта</th>
+            <th>Категория продукта</th>
+            <th>Изображение</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Names</td>
+                <td>@item.Price</td>
+                <td>@item.Descriptions</td>
+                <td>@item.Quantity</td>
+                <td>
+                    @{
+                        string status = item.ProductStatusId == 1 ? "В наличии" :
+                        item.ProductStatusId == 2 ? "Нет в наличии" :
+                        "Неизвестно";
+                        @status
+                    }
+                </td>
+                <td>
+                    @{
+                        string category = 
+                        item.ProductCategoryId == 1 ? "Материнская плата" :
+                        item.ProductCategoryId == 2 ? "Видеокарта" :
+                        item.ProductCategoryId == 3 ? "Процессор" :
+                        item.ProductCategoryId == 4 ? "Система охлаждения" :
+                        item.ProductCategoryId == 5 ? "Оперативная память" :
+                        item.ProductCategoryId == 6 ? "Блок питания" :
+                        item.ProductCategoryId == 7 ? "Жесткий диск/SSD" :
+                        item.ProductCategoryId == 8 ? "Корпус" :
+                        item.ProductCategoryId == 9 ? "Периферия" :
+                       "Неизвестно";
+                        @category
+                    }
+                </td>
+                <td>@item.Img</td>
+                <td>
+                    <a asp-controller="Products" asp-action="EditProducts" asp-route-id="@item.IdProduct">Изменить</a> |
+                    <a asp-controller="Products" asp-action="DetailsProducts" asp-route-id="@item.IdProduct">Детали</a> |
+                    <a asp-controller="Products" asp-action="DeleteProducts" asp-route-id="@item.IdProduct">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

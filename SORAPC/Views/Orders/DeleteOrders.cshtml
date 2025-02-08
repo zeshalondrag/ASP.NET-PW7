@@ -1,0 +1,32 @@
+﻿@model SORAPC.Models.Order
+
+@{
+    ViewBag.Title = "Удаление заказа";
+}
+
+<h2>Вы уверены, что хотите удалить этот заказ?</h2>
+
+<div>
+    <h4>Информация о заказе</h4>
+    <dl class="dl-horizontal">
+        <dt>Номер заказа</dt>
+        <dd>@Model.OrderNumber</dd>
+
+        <dt>Общая сумма</dt>
+        <dd>@Model.TotalAmount</dd>
+
+        <dt>Пользователь</dt>
+        <dd>@Model.Users.UserSurname</dd>
+
+        <dt>Статус заказа</dt>
+        <dd>@Model.OrderStatus.Title</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteOrders" method="post">
+    <input type="hidden" asp-for="IdOrder" />
+    <div class="form-group">
+        <input type="submit" value="Удалить заказ" class="btn btn-danger" />
+        <a asp-action="Orders" class="btn btn-secondary">Отмена</a>
+    </div>
+</form>

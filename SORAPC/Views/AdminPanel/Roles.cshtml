@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SORAPC.Models.Role>
+@{
+    ViewBag.Title = "Список ролей";
+}
+<a asp-action="CreateRoles" asp-controller="Roles" class="btn btn-primary">Добавить роль</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название роли</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        string roleName = item.IdRole == 1 ? "Администратор" :
+                        item.IdRole == 2 ? "Клиент" :
+                        "Неизвестная роль";
+                        @roleName
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Roles" asp-action="EditRoles" asp-route-id="@item.IdRole">Изменить</a> |
+                    <a asp-controller="Roles" asp-action="DetailsRoles" asp-route-id="@item.IdRole">Детали</a> |
+                    <a asp-controller="Roles" asp-action="DeleteRoles" asp-route-id="@item.IdRole">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

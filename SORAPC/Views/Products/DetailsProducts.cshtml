@@ -1,0 +1,42 @@
+﻿@model SORAPC.Models.Product
+@{
+    ViewBag.Title = "Детали продукта";
+}
+<h2>Детали продукта</h2>
+<dl>
+    <dt>Название</dt>
+    <dd>@Model.Names</dd>
+    <dt>Цена</dt>
+    <dd>@Model.Price</dd>
+    <dt>Описание</dt>
+    <dd>@Model.Descriptions</dd>
+    <dt>Статус</dt>
+    <dd>
+        @{
+            string status = Model.ProductStatusId == 1 ? "В наличии" :
+            Model.ProductStatusId == 2 ? "Нет в наличии" :
+            "Неизвестная роль";
+            @status
+        }
+    </dd>
+    <dt>Категория</dt>
+    <dd>
+        @{
+            string category =
+            Model.ProductCategoryId == 1 ? "Материнская плата" :
+            Model.ProductCategoryId == 2 ? "Видеокарта" :
+            Model.ProductCategoryId == 3 ? "Процессор" :
+            Model.ProductCategoryId == 4 ? "Система охлаждения" :
+            Model.ProductCategoryId == 5 ? "Оперативная память" :
+            Model.ProductCategoryId == 6 ? "Блок питания" :
+            Model.ProductCategoryId == 7 ? "Жесткий диск/SSD" :
+            Model.ProductCategoryId == 8 ? "Корпус" :
+            Model.ProductCategoryId == 9 ? "Периферия" :
+            "Неизвестно";
+            @category
+        }
+    </dd>
+</dl>
+<div class="mt-3">
+    <button onclick="history.back()" class="btn btn-secondary">Назад</button>
+</div>

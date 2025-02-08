@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/reg.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="register-container">
+    <div class="card shadow-lg rounded-lg p-4">
+        <div class="card-header text-center">
+            <h2 class="text-center font-weight-bold text-primary">Регистрация</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="UserSurname" class="font-weight-bold">Фамилия пользователя:</label>
+                            <input required type="text" class="form-control" name="UserSurname" placeholder="Введите фамилию пользователя">
+                        </div>
+                        <div class="form-group">
+                            <label for="UserName" class="font-weight-bold">Имя пользователя:</label>
+                            <input required type="text" class="form-control" name="UserName" placeholder="Введите имя пользователя">
+                        </div>
+                        <div class="form-group">
+                            <label for="UserMiddlename" class="font-weight-bold">Отчество пользователя:</label>
+                            <input required type="text" class="form-control" name="UserMiddlename" placeholder="Введите отчество пользователя">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email" class="font-weight-bold">Email:</label>
+                                <input required type="email" class="form-control" name="Email" placeholder="Введите email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Phone" class="font-weight-bold">Номер телефона:</label>
+                                <input required type="tel" class="form-control" name="Phone" placeholder="Введите номер телефона">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Logins" class="font-weight-bold">Логин:</label>
+                                <input required type="text" class="form-control" name="Logins" placeholder="Введите логин">
+                        </div>
+                        <div class="form-group">
+                            <label for="Passwords" class="font-weight-bold">Пароль:</label>
+                            <input required type="password" class="form-control" name="Passwords" placeholder="Введите пароль">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block rounded-pill font-weight-bold mt-3">Зарегистрироваться</button>
+            </form>
+            @if (ViewBag.ErrorMessage != null)
+            {
+                @ViewBag.ErrorMessage
+                ;
+            }
+            <div class="text-center mt-3">
+                <a asp-area="" asp-controller="Authorization" asp-action="Authorization" class="text-primary">Уже есть аккаунт? Войдите!</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

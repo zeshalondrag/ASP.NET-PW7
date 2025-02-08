@@ -1,0 +1,71 @@
+﻿@model SORAPC.Models.User
+
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Профиль пользователя</h2>
+    <div class="card p-4 shadow">
+        <div class="mb-3">
+            <label class="font-weight-bold">Роль:</label>
+            <span>
+                @{
+                    string roleName = Model.RoleId == 1 ? "Администратор" :
+                    Model.RoleId == 2 ? "Клиент" :
+                    "Неизвестная роль";
+                    @roleName
+                }
+            </span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Фамилия:</label>
+            <span>@Model.UserSurname</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Имя:</label>
+            <span>@Model.UserName</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Отчество:</label>
+            <span>@Model.UserMiddlename</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Email:</label>
+            <span>@Model.Email</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Номер телефона:</label>
+            <span>@Model.Phone</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Логин:</label>
+            <span>@Model.Logins</span>
+        </div>
+        <div class="mb-3">
+            <label class="font-weight-bold">Пароль:</label>
+            <div class="input-group">
+                <input type="password" id="password" class="form-control" value="@Model.Passwords" readonly>
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" onclick="togglePassword()">👁️</button>
+                </div>
+            </div>
+        </div>
+        @if (Model.RoleId == 1) 
+        {
+            <div class="text-center mt-4">
+                <a asp-area="" asp-controller="AdminPanel" asp-action="AdminPanel" class="btn btn-primary">Панель администратора</a>
+            </div>
+        }
+        <div class="text-center mt-4">
+            <a href="/Authorization/Logout" class="btn btn-danger">Выйти из аккаунта</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById("password");
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+</script>

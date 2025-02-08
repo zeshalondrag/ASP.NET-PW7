@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SORAPC.Models.OrderPosition>
+@{
+    ViewBag.Title = "Список позиций заказа";
+}
+<a asp-action="CreateOrderPosition" asp-controller="OrderPosition" class="btn btn-primary">Добавить позицию заказа</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Заказ</th>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.ProductId</td>
+                <td>@item.Quantity</td>
+                <td>
+                    <a asp-controller="OrderPosition" asp-action="EditOrderPosition" asp-route-id="@item.IdOrderPosition">Изменить</a> |
+                    <a asp-controller="OrderPosition" asp-action="DetailsOrderPosition" asp-route-id="@item.IdOrderPosition">Детали</a> |
+                    <a asp-controller="OrderPosition" asp-action="DeleteOrderPosition" asp-route-id="@item.IdOrderPosition">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

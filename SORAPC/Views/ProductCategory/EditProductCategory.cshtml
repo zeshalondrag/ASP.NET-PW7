@@ -1,0 +1,18 @@
+﻿@model SORAPC.Models.ProductCategory
+@{
+    ViewBag.Title = "Редактирование категории товара";
+}
+<h2>Редактирование категории товара</h2>
+<form asp-controller="ProductCategory" asp-action="EditProductCategory" method="post">
+    <input type="hidden" asp-for="IdProductCategory" />
+    <div class="form-group">
+        <label asp-for="Title">Название категории</label>
+        <input asp-for="Title" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+    </div>
+</form>
+<div class="mt-3">
+    <button onclick="history.back()" class="btn btn-secondary">Назад</button>
+</div>

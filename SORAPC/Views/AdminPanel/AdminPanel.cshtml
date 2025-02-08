@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Панель администратора";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Панель администратора</h2>
+    <div class="row mt-4">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Корзина</h5>
+                    <a href="@Url.Action("Cart", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Позиция заказа</h5>
+                    <a href="@Url.Action("OrderPosition", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Заказы</h5>
+                    <a href="@Url.Action("Orders", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Статус заказа</h5>
+                    <a href="@Url.Action("OrderStatus", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Категория продукта</h5>
+                    <a href="@Url.Action("ProductCategory", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Продукты</h5>
+                    <a href="@Url.Action("Products", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Статус продукта</h5>
+                    <a href="@Url.Action("ProductStatus", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Роли</h5>
+                    <a href="@Url.Action("Roles", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Пользователи</h5>
+                    <a href="@Url.Action("Users", "AdminPanel")" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

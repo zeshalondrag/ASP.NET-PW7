@@ -1,0 +1,58 @@
+﻿@model SORAPC.Models.Review
+
+<style>
+    .review-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 300px; /* Ширина карточки */
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .review-user {
+        font-weight: bold;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .review-rating {
+        color: #ffc107; /* Желтый цвет для звезд */
+        font-size: 18px;
+    }
+
+    .review-comment {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .review-date {
+        font-size: 12px;
+        color: #777;
+        text-align: right;
+    }
+</style>
+
+<div class="review-card">
+    <div class="review-header">
+        <span class="review-user">@Model.Users.Logins</span>
+        <span class="review-date">@Model.CreatedAt?.ToString("dd.MM.yyyy")</span>
+    </div>
+    <div class="review-rating">
+        <span class="star">⭐️</span>
+        <span class="rating-value">@Model.Rating</span>
+    </div>
+    <div class="review-comment">
+        <p>@Model.Comment</p>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model SORAPC.Models.ProductCategory
+@{
+    ViewBag.Title = "Добавление категории товара";
+}
+<h2>Добавление категории товара</h2>
+<form asp-controller="ProductCategory" asp-action="CreateProductCategory" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Название категории</label>
+        <input asp-for="Title" required type="text" class="form-control" name="Title" placeholder="Введите название категории" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-primary" />
+    </div>
+</form>
+<div class="mt-3">
+    <button onclick="history.back()" class="btn btn-secondary">Назад</button>
+</div>

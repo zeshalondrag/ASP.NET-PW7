@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Авторизация";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="auth-container">
+        <div class="card shadow-lg rounded-lg p-4">
+            <div class="card-header text-center">
+                <h2 class="text-center font-weight-bold text-primary">Авторизация</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="login" class="font-weight-bold">Логин:</label>
+                        <input name="Login" type="text" required class="form-control" id="login" placeholder="Введите логин">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="password" class="font-weight-bold">Пароль:</label>
+                        <input name="Password" type="password" required class="form-control" id="passwords" placeholder="Введите пароль">
+                    </div>
+                    <div class="form-group">
+                        <br />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block rounded-pill font-weight-bold">Авторизоваться</button>
+                </form>
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    @ViewBag.ErrorMessage
+                    ;
+                }
+                <div class="text-center mt-3">
+                    <a asp-area="" asp-controller="Registration" asp-action="Registration" class="text-primary">Нет аккаунта? Зарегестрируйтесь!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

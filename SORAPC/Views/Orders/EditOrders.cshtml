@@ -1,0 +1,49 @@
+﻿@model SORAPC.Models.Order
+
+@{
+    ViewBag.Title = "Редактирование заказа";
+}
+
+<h2>Редактирование заказа</h2>
+
+<form asp-action="EditOrders" method="post">
+    <div class="form-group">
+        <label asp-for="OrderNumber" class="control-label">Номер заказа</label>
+        <input asp-for="OrderNumber" class="form-control" />
+        <span asp-validation-for="OrderNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TotalAmount" class="control-label">Общая сумма</label>
+        <input asp-for="TotalAmount" class="form-control" />
+        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UsersId" class="control-label">Пользователь</label>
+        <select asp-for="UsersId" class="form-control">
+            @foreach (var user in ViewBag.Users as List<SORAPC.Models.User>)
+            {
+               // <option value="@user.IdUsers" @(user.IdUser == Model.UsersId ? "selected" : "")>@user.UserSurname</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OrderStatusId" class="control-label">Статус заказа</label>
+        <select asp-for="OrderStatusId" class="form-control">
+            @foreach (var status in ViewBag.OrderStatuses as List<SORAPC.Models.OrderStatus>)
+            {
+                //<option value="@status.IdOrderStatus" @(status.IdOrderStatus == Model.OrderStatusId ? "selected" : "")>@status.Title</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить изменения" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Orders" class="btn btn-secondary">Назад к списку заказов</a>
+</div>

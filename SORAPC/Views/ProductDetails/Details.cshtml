@@ -1,0 +1,181 @@
+﻿@model SORAPC.Models.Product
+@{
+    ViewData["Title"] = "Купить " + Model.Names;
+}
+
+<style>
+    h1 {
+        font-size: 32px;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+
+    .product-details-container {
+        display: flex;
+        gap: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+        flex: 1;
+        max-width: 300px;
+    }
+
+    .product-image img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .product-info {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .product-description {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .product-rating {
+        font-size: 20px;
+        color: #ffc107;
+    }
+
+    .product-rating span {
+        padding: 5px 10px;
+        background-color: #f7f7f7;
+        border-radius: 8px;
+    }
+
+    .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 28px;
+        color: #333;
+    }
+
+    .product-price span {
+        padding: 5px 10px;
+        background-color: #f7f7f7;
+        border-radius: 8px;
+        width: 315px;
+        height: 60px;
+    }
+
+    .product-price p {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .product-price button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+    .product-price button:hover {
+        background-color: #0b6ad0;
+    }
+
+    .product-status {
+        display: flex;
+        gap: 10px;
+        font-size: 16px;
+        color: #555;
+    }
+
+    .product-status span {
+        padding: 5px 10px;
+        background-color: #f7f7f7;
+        border-radius: 8px;
+    }
+</style>
+
+<div>
+    <h1>
+        @{
+            string category =
+            Model.ProductCategoryId == 1 ? "Материнская плата" :
+            Model.ProductCategoryId == 2 ? "Видеокарта" :
+            Model.ProductCategoryId == 3 ? "Процессор" :
+            Model.ProductCategoryId == 4 ? "Система охлаждения" :
+            Model.ProductCategoryId == 5 ? "Оперативная память" :
+            Model.ProductCategoryId == 6 ? "Блок питания" :
+            Model.ProductCategoryId == 7 ? "Жесткий диск/SSD" :
+            Model.ProductCategoryId == 8 ? "Корпус" :
+            Model.ProductCategoryId == 9 ? "Периферия" :
+            "Неизвестно";
+            @category
+        } - @Model.Names
+    </h1>
+    <div class="product-details-container">
+        <div class="product-image">
+            <img src="@Url.Content("~/image/" + Model.Img)" alt="@Model.Names">
+        </div>
+        <div class="product-info">
+            <div class="product-description">
+                <p>@Model.Descriptions</p>
+            </div>
+            @await Component.InvokeAsync("AverageRating", new { productId = Model.IdProduct })
+            <div class="product-price">
+                <p>@Model.Price.ToString("N0") ₽</p>
+                <button>Купить</button>
+            </div>
+            <div class="product-status">
+                <span>
+                    @{
+                        string status = Model.ProductStatusId == 1 ? "В наличии" :
+                        Model.ProductStatusId == 2 ? "Нет в наличии" :
+                        "Неизвестно";
+                        @status
+                    }
+                </span>
+                <span>Пункты выдачи доступны</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reviews-section">
+    <h2>Отзывы</h2>
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-user">
+                        <span>@review.Users.Logins</span>
+                    </div>
+                    <div class="review-date">
+                        <span>@review.CreatedAt?.ToString("dd.MM.yyyy")</span>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    @for (int i = 0; i < review.Rating; i++)
+                    {
+                        <span class="star @(i < review.Rating ? "filled" : "")">⭐️</span>
+                    }
+                </div>
+                <div class="review-comment">
+                    <p>@review.Comment</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Пока нет отзывов. Будьте первым!</p>
+    }
+    @await Html.PartialAsync("_AddReview", new SORAPC.Models.Review { ProductId = Model.IdProduct })
+</div>

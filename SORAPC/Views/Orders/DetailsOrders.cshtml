@@ -1,0 +1,31 @@
+﻿@model SORAPC.Models.Order
+
+@{
+    ViewBag.Title = "Детали заказа";
+}
+
+<h2>Детали заказа</h2>
+
+<div>
+    <h4>Информация о заказе</h4>
+    <dl class="dl-horizontal">
+        <dt>Номер заказа</dt>
+        <dd>@Model.OrderNumber</dd>
+
+        <dt>Общая сумма</dt>
+        <dd>@Model.TotalAmount</dd>
+
+        <dt>Пользователь</dt>
+        <dd>@Model.Users.UserSurname</dd>
+
+        <dt>Статус заказа</dt>
+        <dd>@Model.OrderStatus.Title</dd>
+
+        <dt>Дата заказа</dt>
+        <dd>@Model.OrderDate</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Orders" class="btn btn-secondary">Назад к списку заказов</a>
+</div>

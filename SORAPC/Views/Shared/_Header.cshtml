@@ -1,0 +1,49 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SORAPC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between align-items-center">
+                <ul class="navbar-nav flex-grow-1" style="margin-left: 2rem;">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Catalog">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Services">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Support" asp-action="Support">Поддержка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Company">Компания</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center icons">
+                    <div class="search-bar position-relative me-3">
+                        <input type="text" class="form-control" placeholder="Поиск по сайту" style="padding-right: 200px;">
+                        <div class="search-icon position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
+                            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.828 4.75a6.078 6.078 0 100 12.156 6.078 6.078 0 000-12.156zM3.25 10.828a7.578 7.578 0 1113.441 4.801l4.161 4.162a.75.75 0 11-1.06 1.06l-4.162-4.16a7.578 7.578 0 01-12.38-5.862z" fill="#000"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <a asp-area=""
+                       asp-controller="@((User.Identity.IsAuthenticated) ? "Authorization" : "Authorization")"
+                       asp-action="@((User.Identity.IsAuthenticated) ? "Profile" : "Authorization")"
+                       class="me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8.00455 8.03852C10.2058 8.03852 11.9886 6.20653 11.9886 3.96362C11.9886 1.75495 10.2058 0 8.00455 0C5.81239 0 4.01137 1.78063 4.02047 3.98074C4.02956 6.21509 5.8033 8.03852 8.00455 8.03852ZM8.00455 6.5404C6.74929 6.5404 5.68505 5.41894 5.68505 3.98074C5.67595 2.57678 6.74019 1.49813 8.00455 1.49813C9.278 1.49813 10.324 2.55966 10.324 3.96362C10.324 5.40182 9.2689 6.5404 8.00455 6.5404ZM2.3286 16H13.6714C15.245 16 16 15.5292 16 14.519C16 12.1648 12.88 9.03157 8.00455 9.03157C3.12905 9.03157 0 12.1648 0 14.519C0 15.5292 0.754974 16 2.3286 16ZM2.04662 14.5019C1.82831 14.5019 1.74645 14.4334 1.74645 14.2793C1.74645 12.9695 3.99318 10.5297 8.00455 10.5297C12.0068 10.5297 14.2536 12.9695 14.2536 14.2793C14.2536 14.4334 14.1717 14.5019 13.9534 14.5019H2.04662Z" fill="#000"></path>
+                        </svg>
+                    </a>
+                    <a href="/cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+                            <path d="M7.03401 11.9819H17.0555C17.4602 11.9819 17.8132 11.6926 17.8132 11.2747C17.8132 10.8569 17.4602 10.5676 17.0555 10.5676H7.22342C6.80155 10.5676 6.54326 10.2863 6.483 9.87644L6.35385 9.04068H17.1244C18.4331 9.04068 19.1218 8.29332 19.3198 7.07986L19.9656 3.03767C19.9828 2.92516 20 2.78855 20 2.70819C20 2.24209 19.647 1.92868 19.0616 1.92868H5.24322L5.10547 1.0447C5.00215 0.353591 4.70943 0 3.75377 0H0.792079C0.370211 0 0 0.345555 0 0.755399C0 1.15721 0.370211 1.50276 0.792079 1.50276H3.50409L4.84718 10.0372C5.03659 11.2426 5.72536 11.9819 7.03401 11.9819ZM18.235 3.34304L17.684 6.93521C17.6238 7.35309 17.3827 7.61828 16.9522 7.61828L6.13 7.62632L5.46707 3.34304H18.235ZM7.73138 16C8.56651 16 9.22084 15.3812 9.22084 14.6097C9.22084 13.8302 8.56651 13.2115 7.73138 13.2115C6.90486 13.2115 6.24193 13.8302 6.24193 14.6097C6.24193 15.3812 6.90486 16 7.73138 16ZM15.6952 16C16.5303 16 17.1933 15.3812 17.1933 14.6097C17.1933 13.8302 16.5303 13.2115 15.6952 13.2115C14.8687 13.2115 14.1972 13.8302 14.1972 14.6097C14.1972 15.3812 14.8687 16 15.6952 16Z" fill="#000"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>

@@ -1,0 +1,20 @@
+﻿@model SORAPC.Models.Product
+@{
+    ViewBag.Title = "Удаление продукта";
+}
+<h2>Удаление продукта</h2>
+<dl>
+    <dt>Название</dt>
+    <dd>@Model.Names</dd>
+    <dt>Цена</dt>
+    <dd>@Model.Price</dd>
+    <dt>Описание</dt>
+    <dd>@Model.Descriptions</dd>
+</dl>
+<form asp-controller="Products" asp-action="DeleteProducts" method="post">
+    <input type="hidden" asp-for="IdProduct" />
+    <input type="submit" value="Удалить" class="btn btn-danger" />
+</form>
+<div class="mt-3">
+    <button onclick="history.back()" class="btn btn-secondary">Назад</button>
+</div>

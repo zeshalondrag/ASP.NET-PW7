@@ -1,0 +1,17 @@
+﻿@model SORAPC.Models.OrderStatus
+
+@{
+    ViewBag.Title = "Удаление статуса заказа";
+}
+
+<h2>Вы уверены, что хотите удалить этот статус заказа?</h2>
+
+<dl>
+    <dt>Название статуса</dt>
+    <dd>@Model.Title</dd>
+</dl>
+
+<form asp-action="DeleteOrderStatus" method="post">
+    <input type="hidden" asp-for="IdOrderStatus" />
+    <button type="submit" class="btn btn-danger">Удалить</button>
+</form>
