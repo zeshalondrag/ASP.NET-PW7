@@ -43,7 +43,7 @@ public partial class SorapcContext : DbContext
     {
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.IdCart).HasName("PK__Cart__72140ECF68C4C47E");
+            entity.HasKey(e => e.IdCart).HasName("PK__Cart__72140ECFBA8F410A");
 
             entity.ToTable("Cart");
 
@@ -63,9 +63,9 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.IdOrder).HasName("PK__Orders__EC9FA955E24F1CCA");
+            entity.HasKey(e => e.IdOrder).HasName("PK__Orders__EC9FA955CEC500B0");
 
-            entity.HasIndex(e => e.OrderNumber, "UQ__Orders__67C7B3CBA19F38CE").IsUnique();
+            entity.HasIndex(e => e.OrderNumber, "UQ__Orders__67C7B3CB91B297D3").IsUnique();
 
             entity.Property(e => e.IdOrder).HasColumnName("ID_Order");
             entity.Property(e => e.OrderDate)
@@ -93,7 +93,7 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<OrderPosition>(entity =>
         {
-            entity.HasKey(e => e.IdOrderPosition).HasName("PK__OrderPos__FD3AA9D6AE8476AB");
+            entity.HasKey(e => e.IdOrderPosition).HasName("PK__OrderPos__FD3AA9D61B9C7819");
 
             entity.ToTable("OrderPosition");
 
@@ -112,11 +112,11 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<OrderStatus>(entity =>
         {
-            entity.HasKey(e => e.IdOrderStatus).HasName("PK__OrderSta__36EC88CF6E69E807");
+            entity.HasKey(e => e.IdOrderStatus).HasName("PK__OrderSta__36EC88CFAC74C219");
 
             entity.ToTable("OrderStatus");
 
-            entity.HasIndex(e => e.Title, "UQ__OrderSta__2CB664DCA591EFED").IsUnique();
+            entity.HasIndex(e => e.Title, "UQ__OrderSta__2CB664DC0178295F").IsUnique();
 
             entity.Property(e => e.IdOrderStatus).HasColumnName("ID_OrderStatus");
             entity.Property(e => e.Title)
@@ -126,9 +126,9 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.IdProduct).HasName("PK__Products__522DE49672A5E0CD");
+            entity.HasKey(e => e.IdProduct).HasName("PK__Products__522DE4965179F353");
 
-            entity.HasIndex(e => e.Names, "UQ__Products__44C034865331BDD4").IsUnique();
+            entity.HasIndex(e => e.Names, "UQ__Products__44C034865641DF87").IsUnique();
 
             entity.Property(e => e.IdProduct).HasColumnName("ID_Product");
             entity.Property(e => e.Descriptions).IsUnicode(false);
@@ -151,11 +151,11 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<ProductCategory>(entity =>
         {
-            entity.HasKey(e => e.IdProductCategory).HasName("PK__ProductC__8FAD631E86039AC9");
+            entity.HasKey(e => e.IdProductCategory).HasName("PK__ProductC__8FAD631E184A2A05");
 
             entity.ToTable("ProductCategory");
 
-            entity.HasIndex(e => e.Title, "UQ__ProductC__2CB664DC4DBFC197").IsUnique();
+            entity.HasIndex(e => e.Title, "UQ__ProductC__2CB664DC3BEFC26F").IsUnique();
 
             entity.Property(e => e.IdProductCategory).HasColumnName("ID_ProductCategory");
             entity.Property(e => e.Title)
@@ -165,11 +165,11 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<ProductStatus>(entity =>
         {
-            entity.HasKey(e => e.IdProductStatus).HasName("PK__ProductS__92EB9BF6390180AA");
+            entity.HasKey(e => e.IdProductStatus).HasName("PK__ProductS__92EB9BF625D0BE59");
 
             entity.ToTable("ProductStatus");
 
-            entity.HasIndex(e => e.Title, "UQ__ProductS__2CB664DC4367AF7E").IsUnique();
+            entity.HasIndex(e => e.Title, "UQ__ProductS__2CB664DC479B60CB").IsUnique();
 
             entity.Property(e => e.IdProductStatus).HasColumnName("ID_ProductStatus");
             entity.Property(e => e.Title)
@@ -179,14 +179,16 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.IdReview).HasName("PK__Reviews__E39E964743BCAF49");
+            entity.HasKey(e => e.IdReview).HasName("PK__Reviews__E39E9647E676D0A0");
 
             entity.Property(e => e.IdReview).HasColumnName("ID_Review");
             entity.Property(e => e.Comment).IsUnicode(false);
+            entity.Property(e => e.Cons).IsUnicode(false);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.ProductId).HasColumnName("Product_ID");
+            entity.Property(e => e.Pros).IsUnicode(false);
             entity.Property(e => e.UsersId).HasColumnName("Users_ID");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
@@ -200,9 +202,9 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.IdRole).HasName("PK__Roles__43DCD32DBDBCA27B");
+            entity.HasKey(e => e.IdRole).HasName("PK__Roles__43DCD32DD02D3E25");
 
-            entity.HasIndex(e => e.Title, "UQ__Roles__2CB664DC3DCEBBE2").IsUnique();
+            entity.HasIndex(e => e.Title, "UQ__Roles__2CB664DC8573A853").IsUnique();
 
             entity.Property(e => e.IdRole).HasColumnName("ID_Role");
             entity.Property(e => e.Title)
@@ -212,13 +214,13 @@ public partial class SorapcContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.IdUsers).HasName("PK__Users__B97FFDA1E031020F");
+            entity.HasKey(e => e.IdUsers).HasName("PK__Users__B97FFDA147F1B393");
 
-            entity.HasIndex(e => e.Phone, "UQ__Users__5C7E359ED159147A").IsUnique();
+            entity.HasIndex(e => e.Phone, "UQ__Users__5C7E359EC658752B").IsUnique();
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D105346143221C").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D105341BB991A9").IsUnique();
 
-            entity.HasIndex(e => e.Logins, "UQ__Users__D00D0632978A6AB0").IsUnique();
+            entity.HasIndex(e => e.Logins, "UQ__Users__D00D06329AE5177E").IsUnique();
 
             entity.Property(e => e.IdUsers).HasColumnName("ID_Users");
             entity.Property(e => e.Email)

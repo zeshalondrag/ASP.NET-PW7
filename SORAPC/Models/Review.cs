@@ -13,6 +13,10 @@ public partial class Review
 
     public int Rating { get; set; }
 
+    public string Pros { get; set; } = null!;
+
+    public string Cons { get; set; } = null!;
+
     public string Comment { get; set; } = null!;
 
     public DateTime? CreatedAt { get; set; }

@@ -8,7 +8,7 @@
         margin-bottom: 15px;
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        max-width: 300px;
+        width: 900px;
     }
 
     .review-header {
@@ -21,30 +21,36 @@
     .review-user {
         font-weight: bold;
         color: #333;
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .review-rating {
         color: #ffc107;
-        font-size: 18px;
+        font-size: 20px;
     }
 
-    .review-comment {
-        font-size: 14px;
+    .review-text {
+        font-size: 20px;
         color: #555;
         line-height: 1.5;
         margin-bottom: 10px;
     }
 
     .review-date {
-        font-size: 12px;
+        font-size: 20px;
         color: #777;
         text-align: right;
+    }
+
+    .review-title {
+        font-weight: bold;
+        color: #222;
+        margin-top: 5px;
     }
 </style>
 
 <div class="reviews-section">
-    <h2>Отзывы</h2>
+    <h2>Все отзывы @Model.Reviews.Count()</h2>
     @if (Model.Reviews.Any())
     {
         foreach (var review in Model.Reviews)
@@ -61,10 +67,17 @@
                 <div class="review-rating">
                     @for (int i = 0; i < review.Rating; i++)
                     {
-                        <span class="star @(i < review.Rating ? "filled" : "")">⭐️</span>
+                        <span class="star">⭐️</span>
                     }
                 </div>
-                <div class="review-comment">
+                <div class="review-text">
+                    <p class="review-title">Достоинства:</p>
+                    <p>@review.Pros</p>
+
+                    <p class="review-title">Недостатки:</p>
+                    <p>@review.Cons</p>
+
+                    <p class="review-title">Комментарий:</p>
                     <p>@review.Comment</p>
                 </div>
             </div>
@@ -74,5 +87,4 @@
     {
         <p>Пока нет отзывов. Будьте первым!</p>
     }
-    @await Html.PartialAsync("_AddReview", new SORAPC.Models.Review { ProductId = Model.IdProduct })
 </div>
